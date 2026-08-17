@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Fragrances | Complete Collection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        card: '#111111',
+                        gold: '#D4AF37',
+                        'gold-hover': '#F3E5AB',
+                        'text-muted': '#A0A0A0'
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-white font-body selection:bg-gold selection:text-dark">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-glow hidden lg:block" id="cursor-glow"></div>
+
+    <!-- Luxury Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#050505]/30 backdrop-blur-md border-b border-white/5 transition-all duration-500" id="navbar">
+        <div class="max-w-[1600px] mx-auto px-6 lg:px-10 h-[90px] flex justify-between items-center">
+            
+            <button class="lg:hidden magnetic z-[60]" id="hamburger-menu">
+                <i data-lucide="menu" class="w-7 h-7 text-gold"></i>
+            </button>
+            
+            <a href="#" data-link="home" class="font-heading text-3xl text-gold tracking-[8px] drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] magnetic">AURA</a>
+            
+            <div class="hidden lg:flex gap-10">
+                <a href="#" data-link="home" class="text-xs uppercase tracking-[2px] text-text-muted hover:text-gold transition-colors relative group">Home
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#collections" data-link="home" class="text-xs uppercase tracking-[2px] text-text-muted hover:text-gold transition-colors relative group">Collections
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#discovery" data-link="home" class="text-xs uppercase tracking-[2px] text-text-muted hover:text-gold transition-colors relative group">Discovery Sets
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#story" data-link="home" class="text-xs uppercase tracking-[2px] text-text-muted hover:text-gold transition-colors relative group">Journal
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#footer" class="text-xs uppercase tracking-[2px] text-text-muted hover:text-gold transition-colors relative group">Contact
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            
+            <div class="flex gap-6 items-center">
+                <button id="open-search" class="magnetic text-white hover:text-gold transition-colors"><i data-lucide="search" class="w-5 h-5"></i></button>
+                <button id="open-wishlist" class="magnetic text-white hover:text-gold transition-colors relative">
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+                    <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-gold text-dark text-[0.65rem] font-bold w-4 h-4 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
+                </button>
+                <button class="magnetic relative text-white hover:text-gold transition-colors" id="open-cart">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-badge" class="absolute -top-1.5 -right-2 bg-gold text-dark text-[0.65rem] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[55] hidden transition-all"></div>
+    <div id="mobile-drawer" class="fixed top-0 -left-full w-[85%] max-w-[400px] h-screen bg-card border-r border-white/5 z-[60] flex flex-col transition-all duration-500">
+        <div class="p-10 flex justify-between items-center border-b border-white/5">
+            <h2 class="font-heading text-2xl text-gold tracking-[5px]">AURA</h2>
+            <button id="close-drawer" class="magnetic text-white hover:text-gold"><i data-lucide="x"></i></button>
+        </div>
+        <div class="p-10 flex flex-col gap-8">
+            <a href="#" data-link="home" class="font-heading text-2xl uppercase tracking-[3px] hover:text-gold hover:pl-2 transition-all">Home</a>
+            <a href="#" data-link="collections" class="font-heading text-2xl uppercase tracking-[3px] hover:text-gold hover:pl-2 transition-all">Collections</a>
+            <a href="#" data-link="home" class="font-heading text-2xl uppercase tracking-[3px] hover:text-gold hover:pl-2 transition-all">Discovery Sets</a>
+            <a href="#" data-link="home" class="font-heading text-2xl uppercase tracking-[3px] hover:text-gold hover:pl-2 transition-all">Journal</a>
+            <a href="#footer" class="font-heading text-2xl uppercase tracking-[3px] hover:text-gold hover:pl-2 transition-all" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main id="app-container" class="min-h-screen">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <div id="home-view" class="view-section active">
+            <!-- Hero Banner -->
+            <header class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Hero" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#050505]/40 to-dark"></div>
+                </div>
+                <div class="relative z-10 max-w-5xl px-6">
+                    <h1 class="font-heading text-5xl md:text-7xl leading-tight mb-6 drop-shadow-2xl reveal-up">The Essence of<br>Timeless Elegance.</h1>
+                    <p class="text-lg md:text-xl text-text-muted mb-10 tracking-wide reveal-up delay-1 max-w-2xl mx-auto">Discover the unseen accessory that speaks volumes before you even say a word.</p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center reveal-up delay-2">
+                        <button data-link="collections" class="magnetic bg-gold text-dark font-semibold py-3.5 px-8 uppercase tracking-[2px] transition-all hover:bg-gold-hover hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">Explore Collections</button>
+                        <a href="#discovery" class="magnetic border border-gold text-gold py-3.5 px-8 uppercase tracking-[2px] transition-all hover:bg-gold hover:text-dark">Discover Notes</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Discovery Section -->
+            <section id="discovery" class="py-24 bg-card border-y border-white/5">
+                <div class="max-w-[1400px] mx-auto px-8 reveal-up">
+                    <div class="text-center mb-16">
+                        <h2 class="font-heading text-4xl text-gold mb-4">Discover by Family</h2>
+                        <div class="w-20 h-0.5 bg-gold mx-auto"></div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal-stagger-container">
+                        <div class="glass-effect p-10 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold group relative overflow-hidden rounded-sm magnetic reveal-stagger" onclick="filterCatalogBy('family', 'Floral')">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <i data-lucide="flower-2" class="w-12 h-12 text-gold mx-auto mb-5 relative z-10"></i>
+                            <h3 class="font-heading text-xl relative z-10">Floral</h3>
+                        </div>
+                        <div class="glass-effect p-10 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold group relative overflow-hidden rounded-sm magnetic reveal-stagger" onclick="filterCatalogBy('family', 'Woody')">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <i data-lucide="tree-pine" class="w-12 h-12 text-gold mx-auto mb-5 relative z-10"></i>
+                            <h3 class="font-heading text-xl relative z-10">Woody</h3>
+                        </div>
+                        <div class="glass-effect p-10 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold group relative overflow-hidden rounded-sm magnetic reveal-stagger" onclick="filterCatalogBy('family', 'Fresh')">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <i data-lucide="droplets" class="w-12 h-12 text-gold mx-auto mb-5 relative z-10"></i>
+                            <h3 class="font-heading text-xl relative z-10">Fresh</h3>
+                        </div>
+                        <div class="glass-effect p-10 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold group relative overflow-hidden rounded-sm magnetic reveal-stagger" onclick="filterCatalogBy('family', 'Oriental')">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <i data-lucide="flame" class="w-12 h-12 text-gold mx-auto mb-5 relative z-10"></i>
+                            <h3 class="font-heading text-xl relative z-10">Oriental</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Signature Collection Grid -->
+            <section id="collections" class="py-32">
+                <div class="max-w-[1400px] mx-auto px-8 reveal-up">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-5 gap-6">
+                        <div>
+                            <h2 class="font-heading text-4xl text-gold mb-4">Signature Collection</h2>
+                            <div class="w-20 h-0.5 bg-gold"></div>
+                        </div>
+                        <button data-link="collections" class="magnetic border border-gold text-gold py-2.5 px-6 text-xs uppercase tracking-[1px] hover:bg-gold hover:text-dark transition-colors">View All Collections</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 reveal-stagger-container" id="featured-grid">
+                        <!-- Products injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scent Notes Breakdown -->
+            <section id="story" class="py-32 bg-[#050505] relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(212,175,55,0.05)_0%,transparent_70%)] pointer-events-none rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10 flex flex-col md:flex-row items-center gap-16">
+                    <div class="flex-1 reveal-up">
+                        <h2 class="font-heading text-4xl md:text-5xl text-gold mb-6">The Architecture of Scent</h2>
+                        <p class="text-text-muted text-lg mb-12 tracking-wide leading-relaxed">A great fragrance is a journey. It unfolds in three distinct acts, revealing its true character over time. Explore the intricate layers that make AURA masterpieces.</p>
+                        
+                        <div class="flex flex-col gap-8">
+                            <div class="flex gap-6 items-start reveal-stagger">
+                                <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center shrink-0 mt-1">
+                                    <span class="text-gold font-heading text-xl">1</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl text-white mb-2 tracking-[2px] uppercase text-sm font-semibold">Top Notes (The Introduction)</h3>
+                                    <p class="text-white/60">The first impression. Bright, volatile ingredients like Bergamot, Citrus, and Pink Pepper that sparkle upon contact with the skin.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 items-start reveal-stagger">
+                                <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center shrink-0 mt-1">
+                                    <span class="text-gold font-heading text-xl">2</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl text-white mb-2 tracking-[2px] uppercase text-sm font-semibold">Heart Notes (The Soul)</h3>
+                                    <p class="text-white/60">The core of the fragrance. Rich florals, spices, and exotic woods like Damask Rose, Jasmine, and Cardamom that linger for hours.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 items-start reveal-stagger">
+                                <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center shrink-0 mt-1">
+                                    <span class="text-gold font-heading text-xl">3</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl text-white mb-2 tracking-[2px] uppercase text-sm font-semibold">Base Notes (The Memory)</h3>
+                                    <p class="text-white/60">The foundation that grounds the scent. Deep, resonant ingredients like Amber, Oud, and Vanilla that stay on your skin until the next dawn.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full reveal-up delay-1">
+                        <div class="aspect-[4/5] overflow-hidden rounded-sm border border-white/5 relative">
+                            <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80" alt="Fragrance Notes" class="w-full h-full object-cover img-zoom">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marquee Reviews -->
+            <section class="py-20 overflow-hidden relative border-y border-white/5 bg-[#030303]">
+                <!-- Side fade effects for smooth entry/exit -->
+                <div class="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none"></div>
+                <div class="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none"></div>
+                
+                <div class="animate-marquee flex items-center">
+                    <!-- Group 1 -->
+                    <div class="flex gap-8 px-4 shrink-0">
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-purple-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"A true masterpiece of olfactory art."</p>
+                            <p class="text-xs font-semibold text-purple-300 tracking-[3px] uppercase relative z-10">— VOGUE</p>
+                        </div>
+                        
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-emerald-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"The depth of Noir Absolu is unmatched."</p>
+                            <p class="text-xs font-semibold text-emerald-300 tracking-[3px] uppercase relative z-10">— GQ</p>
+                        </div>
+
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-gold/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"AURA has redefined modern luxury."</p>
+                            <p class="text-xs font-semibold text-gold tracking-[3px] uppercase relative z-10">— Harper's Bazaar</p>
+                        </div>
+
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-rose-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"My absolute signature scent."</p>
+                            <p class="text-xs font-semibold text-rose-300 tracking-[3px] uppercase relative z-10">— Emma S.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Group 2 (Duplicate for seamless loop) -->
+                    <div class="flex gap-8 px-4 shrink-0">
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-purple-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"A true masterpiece of olfactory art."</p>
+                            <p class="text-xs font-semibold text-purple-300 tracking-[3px] uppercase relative z-10">— VOGUE</p>
+                        </div>
+                        
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-emerald-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"The depth of Noir Absolu is unmatched."</p>
+                            <p class="text-xs font-semibold text-emerald-300 tracking-[3px] uppercase relative z-10">— GQ</p>
+                        </div>
+
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-gold/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"AURA has redefined modern luxury."</p>
+                            <p class="text-xs font-semibold text-gold tracking-[3px] uppercase relative z-10">— Harper's Bazaar</p>
+                        </div>
+
+                        <div class="w-[350px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden shrink-0 group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                            <i class="fa-solid fa-quote-left text-rose-400/30 text-4xl mb-4 relative z-10"></i>
+                            <p class="font-heading text-xl text-white italic mb-6 relative z-10 leading-snug">"My absolute signature scent."</p>
+                            <p class="text-xs font-semibold text-rose-300 tracking-[3px] uppercase relative z-10">— Emma S.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= COLLECTIONS VIEW ================= -->
+        <div id="collections-view" class="view-section pt-[90px]">
+            <!-- Header -->
+            <div class="pt-16 pb-12 text-center border-b border-white/5 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.08),#050505)]">
+                <div class="max-w-4xl mx-auto px-6">
+                    <h1 class="font-heading text-4xl md:text-5xl mb-4 tracking-[3px] reveal-up">Signature Fragrances</h1>
+                    <p class="text-text-muted tracking-wide reveal-up delay-1">Explore our masterfully crafted olfactory masterpieces.</p>
+                </div>
+            </div>
+
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-10 pt-8 pb-16 relative">
+
+                <!-- Sidebar Filters (Offcanvas Drawer) -->
+                <aside id="sidebar-filters" class="fixed top-0 -left-full w-[320px] lg:w-[360px] h-screen bg-[#050505] z-[100] p-8 lg:p-10 overflow-y-auto custom-scrollbar transition-all duration-500 border-r border-white/5">
+                    <div class="flex justify-between items-center mb-10 border-b border-white/5 pb-5">
+                        <h3 class="font-heading text-2xl text-gold">Filters</h3>
+                        <button id="close-filters" class="text-white hover:text-gold transition-colors"><i data-lucide="x"></i></button>
+                    </div>
+                    
+                    <div class="mb-8 border-b border-white/5 pb-8">
+                        <h3 class="text-xs font-semibold uppercase tracking-[3px] mb-6 text-white/80">Scent Family</h3>
+                        <div class="flex flex-col gap-3">
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="Floral" class="family-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> Floral
+                            </label>
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="Woody" class="family-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> Woody
+                            </label>
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="Fresh" class="family-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> Fresh
+                            </label>
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="Oriental" class="family-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> Oriental
+                            </label>
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="Aquatic" class="family-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> Aquatic
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 border-b border-white/5 pb-8">
+                        <h3 class="text-xs font-semibold uppercase tracking-[3px] mb-6 text-white/80">Volume</h3>
+                        <div class="flex flex-col gap-3">
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="50ml" class="volume-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> 50ml
+                            </label>
+                            <label class="custom-checkbox flex items-center cursor-pointer text-[0.95rem] text-text-muted hover:text-white transition-colors relative pl-8 group">
+                                <input type="checkbox" value="100ml" class="volume-filter absolute opacity-0 cursor-pointer h-0 w-0"> 
+                                <div class="absolute left-0 top-1 w-4 h-4 border border-white/20 rounded-sm transition-all group-hover:border-gold"></div> 100ml
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-4 text-xs font-semibold uppercase tracking-[3px] text-white/80">
+                            <h3>Max Price</h3>
+                            <span class="text-gold">$<span id="price-val">400</span></span>
+                        </div>
+                        <input type="range" min="100" max="400" value="400" id="price-filter">
+                    </div>
+                    
+                    <div class="flex flex-col gap-3">
+                        <button class="w-full bg-gold text-dark py-3 text-xs font-bold uppercase tracking-[2px] hover:bg-gold-hover transition-colors rounded-sm" onclick="applyFilters()">Apply Filters</button>
+                        <button class="w-full border border-white/10 text-text-muted py-3 text-xs font-bold uppercase tracking-[2px] hover:border-gold hover:text-gold transition-colors rounded-sm" onclick="resetFilters()">Reset</button>
+                    </div>
+                </aside>
+
+                <!-- Catalog Content -->
+                <div class="w-full">
+                    <!-- Category Tabs -->
+                    <div class="flex overflow-x-auto custom-scrollbar gap-8 mb-8 pb-4 border-b border-white/5 whitespace-nowrap reveal-up" id="shop-category-tabs">
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-gold border-b-2 border-gold pb-2 transition-colors tab-btn" data-category="All">All Fragrances</button>
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-white/50 hover:text-white pb-2 border-b-2 border-transparent hover:border-white/20 transition-colors tab-btn" data-category="Men">Men</button>
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-white/50 hover:text-white pb-2 border-b-2 border-transparent hover:border-white/20 transition-colors tab-btn" data-category="Women">Women</button>
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-white/50 hover:text-white pb-2 border-b-2 border-transparent hover:border-white/20 transition-colors tab-btn" data-category="Unisex">Unisex</button>
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-white/50 hover:text-white pb-2 border-b-2 border-transparent hover:border-white/20 transition-colors tab-btn" data-category="Best Sellers">Best Sellers</button>
+                        <button class="text-sm font-semibold tracking-[2px] uppercase text-white/50 hover:text-white pb-2 border-b-2 border-transparent hover:border-white/20 transition-colors tab-btn" data-category="New Arrivals">New Arrivals</button>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 reveal-up">
+                        
+                        <!-- Toggle Button (3 Bars) & Result Count -->
+                        <div class="flex items-center gap-4 w-full md:w-auto">
+                            <button class="magnetic bg-[#0a0a0a] border border-white/10 text-white py-3 px-6 flex items-center justify-center gap-3 rounded-md hover:border-gold transition-colors flex-1 md:flex-none" id="mobile-filter-btn">
+                                <i data-lucide="menu" class="w-5 h-5 text-gold"></i> <span class="tracking-[2px] uppercase text-xs font-semibold">Filters</span>
+                            </button>
+                            <span id="product-count" class="font-heading text-xl text-white hidden sm:block whitespace-nowrap">12 Results</span>
+                        </div>
+
+                        <!-- Search & Sort Controls -->
+                        <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                            <!-- Shop Inline Search -->
+                            <div class="relative w-full sm:w-[250px]">
+                                <i data-lucide="search" class="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                                <input type="text" id="shop-search-input" class="w-full bg-[#0a0a0a] border border-white/5 text-sm text-white py-3 pl-10 pr-4 rounded-md outline-none focus:border-gold transition-colors placeholder:text-white/30" placeholder="Search shop..." oninput="applyFilters()">
+                            </div>
+
+                            <!-- Sort Dropdown -->
+                            <div class="flex items-center gap-3 bg-[#0a0a0a] border border-white/5 py-2.5 px-4 rounded-md w-full sm:w-auto justify-between sm:justify-start">
+                                <label for="sort-select" class="text-xs uppercase tracking-[2px] text-white/50 whitespace-nowrap">Sort:</label>
+                                <div class="relative flex items-center">
+                                    <select id="sort-select" onchange="applyFilters()" class="bg-transparent text-gold outline-none cursor-pointer uppercase tracking-[1px] text-xs font-semibold appearance-none pr-6 w-full">
+                                        <option value="popular" class="bg-dark text-white">Popularity</option>
+                                        <option value="price-low" class="bg-dark text-white">Price: Low to High</option>
+                                        <option value="price-high" class="bg-dark text-white">Price: High to Low</option>
+                                        <option value="newest" class="bg-dark text-white">New Arrivals</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 text-gold absolute right-0 pointer-events-none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Adjusted grid columns so cards don't look overly large/stretched -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 reveal-stagger-container" id="full-catalog-grid">
+                        <!-- Products injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Luxury Footer -->
+    <footer id="footer" class="py-24 border-t border-white/5 bg-[#030303]">
+        <div class="max-w-[1400px] mx-auto px-8 reveal-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+                
+                <!-- Col 1: Brand & Philosophy -->
+                <div class="flex flex-col">
+                    <a href="#" data-link="home" class="font-heading text-4xl text-gold tracking-[5px] block mb-6 magnetic w-fit">AURA</a>
+                    <p class="text-text-muted text-[0.95rem] leading-[1.8] max-w-[300px]">Crafting liquid memories since 2024. Luxury without the noise, designed for the modern minimalist.</p>
+                </div>
+                
+                <!-- Col 2: Quick Links -->
+                <div class="flex flex-col">
+                    <h4 class="text-lg tracking-[2px] mb-8 font-heading text-white">Quick Links</h4>
+                    <ul class="flex flex-col gap-4 text-text-muted text-[0.95rem]">
+                        <li><a href="#" data-link="collections" class="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Shop All</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Fragrance Finder</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Returns</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Privacy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Newsletter -->
+                <div class="flex flex-col">
+                    <h4 class="text-lg tracking-[2px] mb-8 font-heading text-white">Join the Inner Circle</h4>
+                    <p class="text-text-muted text-[0.95rem] mb-6 leading-[1.6]">Subscribe for exclusive releases and receive 10% off your first order.</p>
+                    <form id="newsletter-form" class="flex border-b border-white/20 pb-3 focus-within:border-gold transition-colors group">
+                        <input type="email" placeholder="Your Email Address" required class="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/30 text-[0.95rem]">
+                        <button type="submit" class="text-white/50 group-hover:text-gold hover:translate-x-1 transition-all"><i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                    <div id="newsletter-success" class="hidden text-gold mt-4 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i> Welcome to the Inner Circle.
+                    </div>
+                </div>
+                
+                <!-- Col 4: Social Media -->
+                <div class="flex flex-col lg:items-end">
+                    <h4 class="text-lg tracking-[2px] mb-8 font-heading text-white lg:text-right w-full">Social</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-gold hover:text-dark hover:border-gold transition-all duration-300 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:-translate-y-1 magnetic"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-gold hover:text-dark hover:border-gold transition-all duration-300 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:-translate-y-1 magnetic"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-gold hover:text-dark hover:border-gold transition-all duration-300 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:-translate-y-1 magnetic"><i class="fa-brands fa-pinterest-p text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-gold hover:text-dark hover:border-gold transition-all duration-300 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:-translate-y-1 magnetic"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Copyright -->
+            <div class="pt-8 border-t border-white/10 flex justify-center items-center">
+                <p class="text-text-muted text-[0.85rem] tracking-[1px] text-center">&copy; 2026 AURA Fragrances. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[2000] hidden transition-all"></div>
+    <div id="cart-drawer" class="fixed top-0 -right-full w-full max-w-[450px] h-screen bg-[#050505] border-l border-white/5 z-[2001] flex flex-col transition-all duration-500">
+        <div class="p-8 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]">
+            <h3 class="text-xs uppercase tracking-[4px] text-white/80 font-semibold">Your Bag</h3>
+            <button id="close-cart" class="text-white/60 hover:text-gold transition-colors hover:rotate-90 duration-300"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-8 flex flex-col custom-scrollbar"></div>
+        <div class="p-8 border-t border-white/5 bg-[#0a0a0a]">
+            <!-- Delivery Banner -->
+            <div class="bg-gradient-to-r from-[rgba(212,175,55,0.05)] to-transparent border border-[rgba(212,175,55,0.2)] p-3 mb-6 rounded-sm flex items-center gap-3">
+                <i data-lucide="gift" class="w-4 h-4 text-gold"></i>
+                <p class="text-[0.65rem] uppercase tracking-[1px] text-white/80">You are eligible for complimentary luxury samples</p>
+            </div>
+            
+            <div class="flex justify-between items-end mb-2">
+                <span class="text-xs uppercase tracking-[3px] text-white/60">Subtotal</span>
+                <span id="cart-total" class="font-heading text-2xl text-gold">$0.00</span>
+            </div>
+            <p class="text-[10px] text-white/40 uppercase tracking-[1px] mb-6">Taxes and shipping calculated at checkout</p>
+            <button class="w-full bg-gold text-dark py-4 text-xs uppercase tracking-[3px] font-bold hover:bg-[#F3E5AB] transition-all duration-300 magnetic hover:shadow-[0_0_20px_rgba(212,175,55,0.6)]" onclick="processCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Drawer -->
+    <div id="wishlist-drawer" class="fixed top-0 -right-full w-full max-w-[450px] h-screen bg-[#050505] border-l border-white/5 z-[2001] flex flex-col transition-all duration-500">
+        <div class="p-8 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]">
+            <h3 class="text-xs uppercase tracking-[4px] text-white/80 font-semibold">Your Wishlist</h3>
+            <button id="close-wishlist" class="text-white/60 hover:text-gold transition-colors hover:rotate-90 duration-300"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div id="wishlist-items" class="flex-1 overflow-y-auto p-8 flex flex-col custom-scrollbar"></div>
+    </div>
+
+    <!-- Search Dropdown Panel -->
+    <div id="search-overlay" class="fixed top-[85px] right-4 left-4 sm:left-auto sm:right-6 lg:right-10 sm:w-[350px] md:w-[400px] bg-[#0a0a0a] border border-white/10 rounded-md z-[3000] opacity-0 invisible transform -translate-y-4 transition-all duration-300 max-h-[70vh] flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.9)]">
+        <div class="p-5 flex flex-col h-full">
+            <div class="relative mb-5 border-b border-white/10 focus-within:border-gold transition-colors flex items-center pb-2">
+                <i data-lucide="search" class="w-4 h-4 text-white/40 mr-3"></i>
+                <input type="text" id="search-input" class="w-full bg-transparent border-none text-sm text-white outline-none placeholder:text-white/30" placeholder="Search fragrances...">
+                <button id="close-search" class="text-white/50 hover:text-gold transition-colors hover:rotate-90 duration-300 ml-2"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+            <div class="overflow-y-auto custom-scrollbar flex-1">
+                <p id="search-status" class="text-[0.6rem] uppercase tracking-[2px] text-gold mb-3 hidden px-1">Showing results</p>
+                <div id="search-results-grid" class="flex flex-col gap-2">
+                    <!-- Search Results Injected Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[2000] flex items-center justify-center p-5 invisible opacity-0 transition-all duration-500">
+        <div class="modal-content w-full max-w-[850px] bg-card rounded-md flex flex-col md:flex-row relative transform translate-y-8 scale-95 transition-all duration-500 overflow-hidden">
+            <button id="close-modal-btn" class="absolute top-5 right-5 z-10 w-10 h-10 bg-black/80 border border-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-dark hover:rotate-90 transition-all cursor-pointer"><i data-lucide="x"></i></button>
+            <div id="modal-body" class="flex flex-col md:flex-row w-full max-h-[90vh] md:max-h-none overflow-y-auto md:overflow-visible"></div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[4000] invisible opacity-0 transition-all duration-500 overflow-y-auto custom-scrollbar flex items-center justify-center p-4">
+        <div class="modal-content w-full max-w-[800px] bg-[#0a0a0a] border border-white/10 rounded-sm p-8 md:p-12 relative transform translate-y-8 scale-95 transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+            <button id="close-checkout" class="absolute top-6 right-6 text-white/40 hover:text-gold transition-colors hover:rotate-90 duration-300"><i data-lucide="x" class="w-6 h-6"></i></button>
+            
+            <h2 class="font-heading text-3xl md:text-4xl text-gold mb-2 text-center">Secure Checkout</h2>
+            <p class="text-white/40 text-xs uppercase tracking-[2px] text-center mb-10">Complete your luxury purchase</p>
+            
+            <!-- Step Indicators -->
+            <div class="flex justify-center items-center gap-4 mb-12">
+                <div class="flex items-center gap-2 text-gold">
+                    <div class="w-6 h-6 rounded-full bg-gold text-[#0a0a0a] flex items-center justify-center text-xs font-bold">1</div>
+                    <span class="text-xs uppercase tracking-[2px] font-semibold">Shipping</span>
+                </div>
+                <div class="w-16 h-px bg-white/20"></div>
+                <div id="payment-step-indicator" class="flex items-center gap-2 text-white/40 transition-colors">
+                    <div class="w-6 h-6 rounded-full border border-white/40 flex items-center justify-center text-xs font-bold">2</div>
+                    <span class="text-xs uppercase tracking-[2px]">Payment</span>
+                </div>
+            </div>
+
+            <!-- Forms Container -->
+            <div id="checkout-forms" class="relative overflow-hidden">
+                <!-- Step 1: Shipping -->
+                <form id="shipping-form" class="transition-all duration-500 w-full" onsubmit="proceedToPayment(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">Full Name</label>
+                            <input type="text" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="Jane Doe">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">Email Address</label>
+                            <input type="email" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="jane@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">Phone Number</label>
+                            <input type="tel" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="+1 234 567 8900">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">Pincode / Zip</label>
+                            <input type="text" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="10001">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">Full Address</label>
+                            <input type="text" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="123 Luxury Avenue, Suite 45">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">City</label>
+                            <input type="text" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="New York">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[2px] text-white/60 mb-2">State / Province</label>
+                            <input type="text" required class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none transition-colors" placeholder="NY">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gold text-dark py-4 text-xs uppercase tracking-[3px] font-bold hover:bg-[#F3E5AB] transition-all magnetic">Continue to Payment</button>
+                </form>
+
+                <!-- Step 2: Payment (Hidden initially) -->
+                <form id="payment-form" class="absolute top-0 left-full w-full opacity-0 invisible transition-all duration-500" onsubmit="placeOrder(event)">
+                    <p class="text-center text-white/60 text-sm mb-6">Select your preferred payment method.</p>
+                    
+                    <div class="flex flex-col gap-4 mb-8">
+                        <!-- COD -->
+                        <label class="relative block cursor-pointer group">
+                            <input type="radio" name="payment_method" value="cod" class="peer sr-only" checked onchange="togglePaymentInputs()">
+                            <div class="border border-white/20 rounded-sm p-5 hover:border-gold/50 peer-checked:border-gold peer-checked:bg-[rgba(212,175,55,0.05)] transition-all flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <i data-lucide="truck" class="w-6 h-6 text-gold"></i>
+                                    <span class="text-sm tracking-[1px] text-white uppercase">Cash on Delivery</span>
+                                </div>
+                                <div class="w-4 h-4 rounded-full border-2 border-white/20 peer-checked:border-gold flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-gold opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- UPI / GPay -->
+                        <label class="relative block cursor-pointer group">
+                            <input type="radio" name="payment_method" value="upi" class="peer sr-only" onchange="togglePaymentInputs()">
+                            <div class="border border-white/20 rounded-sm p-5 hover:border-gold/50 peer-checked:border-gold peer-checked:bg-[rgba(212,175,55,0.05)] transition-all flex flex-col justify-center">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <i data-lucide="smartphone" class="w-6 h-6 text-gold"></i>
+                                        <span class="text-sm tracking-[1px] text-white uppercase">UPI / GPay</span>
+                                    </div>
+                                    <div class="w-4 h-4 rounded-full border-2 border-white/20 peer-checked:border-gold flex items-center justify-center">
+                                        <div class="w-2 h-2 rounded-full bg-gold opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                                    </div>
+                                </div>
+                                <div id="upi-input-container" class="mt-4 hidden pl-10">
+                                    <input type="text" id="upi-id" class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none text-sm" placeholder="Enter UPI ID (e.g., name@okbank)">
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Credit Card -->
+                        <label class="relative block cursor-pointer group">
+                            <input type="radio" name="payment_method" value="card" class="peer sr-only" onchange="togglePaymentInputs()">
+                            <div class="border border-white/20 rounded-sm p-5 hover:border-gold/50 peer-checked:border-gold peer-checked:bg-[rgba(212,175,55,0.05)] transition-all flex flex-col justify-center">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <i data-lucide="credit-card" class="w-6 h-6 text-gold"></i>
+                                        <span class="text-sm tracking-[1px] text-white uppercase">Credit / Debit Card</span>
+                                    </div>
+                                    <div class="w-4 h-4 rounded-full border-2 border-white/20 peer-checked:border-gold flex items-center justify-center">
+                                        <div class="w-2 h-2 rounded-full bg-gold opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                                    </div>
+                                </div>
+                                <div id="card-input-container" class="mt-4 hidden pl-10 flex flex-col gap-4">
+                                    <input type="text" class="w-full bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none text-sm" placeholder="Card Number">
+                                    <div class="flex gap-4">
+                                        <input type="text" class="w-1/2 bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none text-sm" placeholder="MM/YY">
+                                        <input type="password" class="w-1/2 bg-transparent border-b border-white/20 focus:border-gold text-white py-2 outline-none text-sm" placeholder="CVV">
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button type="button" class="w-1/3 border border-white/20 text-white/60 py-4 text-xs uppercase tracking-[2px] hover:text-white transition-colors" onclick="backToShipping()">Back</button>
+                        <button type="submit" class="w-2/3 bg-gold text-dark py-4 text-xs uppercase tracking-[3px] font-bold hover:bg-[#F3E5AB] transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)]">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[5000] invisible opacity-0 transition-all duration-500 flex items-center justify-center p-4">
+        <div class="modal-content w-full max-w-[500px] bg-[#0a0a0a] border border-gold rounded-sm p-12 relative transform scale-95 transition-all duration-500 text-center shadow-[0_0_60px_rgba(212,175,55,0.15)]">
+            <div class="w-20 h-20 rounded-full border-2 border-gold flex items-center justify-center mx-auto mb-8">
+                <i data-lucide="check" class="w-10 h-10 text-gold"></i>
+            </div>
+            <h2 class="font-heading text-4xl text-gold mb-4">Thank You.</h2>
+            <p class="text-white/80 mb-2">Your luxury order has been placed successfully.</p>
+            <p class="text-white/40 text-sm mb-10">An order confirmation has been sent to your email.</p>
+            <button class="w-full bg-gold text-dark py-4 text-xs uppercase tracking-[3px] font-bold hover:bg-[#F3E5AB] transition-all magnetic" onclick="closeSuccessModal()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-8 right-8 z-[1000] group">
+        <div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
+        <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] relative hover:scale-110 transition-transform duration-300">
+            <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+        </div>
+        <!-- Tooltip -->
+        <div class="absolute right-full top-1/2 -translate-y-1/2 mr-4 bg-[#0a0a0a] border border-white/10 text-white text-xs whitespace-nowrap px-4 py-2 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl uppercase tracking-[1px]">
+            Chat for Custom Fragrance
+        </div>
+    </a>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+/* --- Root Variables & Tailwind Extensions --- */
+:root {
+  --bg-dark: #050505;
+  --bg-card: #111111;
+  --gold: #D4AF37;
+  --gold-hover: #F3E5AB;
+  --text-main: #FFFFFF;
+  --text-muted: #A0A0A0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--bg-dark);
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+/* Typography Overrides */
+.font-heading { font-family: 'Playfair Display', serif; }
+.font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* --- Custom Cursor --- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  mix-blend-mode: screen;
+}
+.cursor-glow.active {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* --- Utilities & Effects --- */
+.glass-effect {
+  background: rgba(17, 17, 17, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-gold { color: var(--gold); }
+.bg-gold { background-color: var(--gold); }
+.border-gold { border-color: var(--gold); }
+.border-glass { border-color: rgba(255, 255, 255, 0.05); }
+
+/* --- Animations --- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal-up.in-view { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+.reveal-stagger {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal-stagger.in-view { opacity: 1; transform: translateY(0); }
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 30s linear infinite;
+}
+
+/* Floating Bottle Image */
+.img-zoom { transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+.group:hover .img-zoom { transform: scale(1.08); }
+
+/* Magnetic items */
+.magnetic { display: inline-block; }
+
+/* Custom Checkbox */
+.custom-checkbox input:checked ~ div { background-color: var(--gold); border-color: var(--gold); }
+.custom-checkbox input:checked ~ div::after { content: ''; position: absolute; left: 5px; top: 1px; width: 4px; height: 8px; border: solid var(--bg-dark); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+/* Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  height: 2px;
+  border-radius: 2px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+}
+
+/* View Transitions */
+.view-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.view-section.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Modal and Drawers */
+.drawer-enter { right: 0 !important; }
+.drawer-leave { right: -100% !important; }
+.mobile-nav-enter { left: 0 !important; }
+.mobile-nav-leave { left: -100% !important; }
+
+/* --- Wishlist Animations --- */
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.heart-animate {
+  animation: heartPop 0.3s ease-out forwards;
+}

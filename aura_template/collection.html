@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Fragrances | Complete Collection</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll-x" data-page="collection">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Luxury Navigation Bar -->
+    <nav class="glass-nav" id="navbar">
+        <div class="nav-container">
+            <div class="hamburger magnetic" id="hamburger-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <a href="index.html" class="logo magnetic">AURA</a>
+            
+            <div class="nav-links desktop-only" id="nav-links">
+                <a href="index.html" class="magnetic">Home</a>
+                <a href="collection.html" class="magnetic">Collections</a>
+                <a href="index.html#discovery" class="magnetic">Discovery Sets</a>
+                <a href="index.html#story" class="magnetic">Journal</a>
+                <a href="index.html#story" class="magnetic">Our Story</a>
+                <a href="#footer" class="magnetic">Contact</a>
+            </div>
+            
+            <div class="nav-icons">
+                <button class="icon-btn magnetic" aria-label="Search"><i data-lucide="search"></i></button>
+                <button class="icon-btn desktop-only magnetic" aria-label="Wishlist"><i data-lucide="heart"></i></button>
+                <button class="icon-btn cart-toggle magnetic" id="open-cart" aria-label="Shopping Bag">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer-overlay" id="mobile-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <h2 class="logo">AURA</h2>
+            <button class="close-drawer magnetic" id="close-drawer"><i data-lucide="x"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link" onclick="closeMobileMenu();">Home</a>
+            <a href="collection.html" class="drawer-link" onclick="closeMobileMenu();">Collections</a>
+            <a href="index.html#discovery" class="drawer-link" onclick="closeMobileMenu();">Discovery Sets</a>
+            <a href="index.html#story" class="drawer-link" onclick="closeMobileMenu();">Journal</a>
+            <a href="index.html#story" class="drawer-link" onclick="closeMobileMenu();">Our Story</a>
+            <a href="#footer" class="drawer-link" onclick="closeMobileMenu();">Contact</a>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main id="app-container">
+        
+        <!-- Complete Collection Section -->
+        <section id="catalog" style="padding-top: 0;">
+            <div class="catalog-header">
+                <div class="container">
+                    <h1 class="reveal-up">Complete Collection</h1>
+                    <p class="reveal-up delay-1">Explore our masterfully crafted olfactory masterpieces.</p>
+                </div>
+            </div>
+
+            <div class="container catalog-layout">
+                <!-- Mobile Filter Toggle -->
+                <button class="btn btn-outline mobile-filter-btn magnetic" id="mobile-filter-btn">
+                    <i data-lucide="sliders-horizontal"></i> Filters
+                </button>
+
+                <!-- Sidebar Filters -->
+                <aside class="sidebar-filters reveal-up" id="sidebar-filters">
+                    <div class="filter-header-mobile">
+                        <h3>Filters</h3>
+                        <button id="close-filters"><i data-lucide="x"></i></button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Scent Family</h3>
+                        <label class="custom-checkbox"><input type="checkbox" value="Floral" class="family-filter"> <span class="checkmark"></span> <span class="label-text">Floral</span></label>
+                        <label class="custom-checkbox"><input type="checkbox" value="Woody" class="family-filter"> <span class="checkmark"></span> <span class="label-text">Woody</span></label>
+                        <label class="custom-checkbox"><input type="checkbox" value="Fresh" class="family-filter"> <span class="checkmark"></span> <span class="label-text">Fresh</span></label>
+                        <label class="custom-checkbox"><input type="checkbox" value="Oriental" class="family-filter"> <span class="checkmark"></span> <span class="label-text">Oriental</span></label>
+                        <label class="custom-checkbox"><input type="checkbox" value="Aquatic" class="family-filter"> <span class="checkmark"></span> <span class="label-text">Aquatic</span></label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Volume</h3>
+                        <label class="custom-checkbox"><input type="checkbox" value="50ml" class="volume-filter"> <span class="checkmark"></span> <span class="label-text">50ml</span></label>
+                        <label class="custom-checkbox"><input type="checkbox" value="100ml" class="volume-filter"> <span class="checkmark"></span> <span class="label-text">100ml</span></label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Max Price: $<span id="price-val">400</span></h3>
+                        <input type="range" min="100" max="400" value="400" class="price-slider" id="price-filter">
+                    </div>
+                    
+                    <button class="btn btn-solid w-100 magnetic" onclick="applyFilters()">Apply Filters</button>
+                    <button class="btn btn-outline w-100 magnetic" onclick="resetFilters()" style="margin-top: 15px; border-color: #555; color: #aaa;">Reset</button>
+                </aside>
+
+                <!-- Catalog Content -->
+                <div class="catalog-content">
+                    <div class="catalog-top-bar reveal-up">
+                        <span id="product-count">12 Results</span>
+                        <div class="sort-wrapper">
+                            <label for="sort-select">Sort by:</label>
+                            <select id="sort-select" onchange="applyFilters()">
+                                <option value="popular">Popularity</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid reveal-stagger-container" id="full-catalog-grid">
+                        <!-- All Products injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Sophisticated Footer -->
+    <footer id="footer" class="footer section">
+        <div class="container reveal-up">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo magnetic">AURA</a>
+                    <p class="philosophy">Crafting liquid memories since 2024. Luxury without the noise, designed for the modern minimalist.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="collection.html">Shop All</a></li>
+                        <li><a href="#">Fragrance Finder</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col newsletter-col">
+                    <h4>Join the Inner Circle</h4>
+                    <p>Subscribe for exclusive releases and receive 10% off your first order.</p>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit" class="magnetic"><i data-lucide="arrow-right"></i></button>
+                    </form>
+                    <div id="newsletter-success" class="hidden" style="color: var(--gold); margin-top: 10px; font-size: 0.9rem;">
+                        <i data-lucide="check-circle" style="width: 16px; display:inline-block; vertical-align:middle;"></i> Welcome to the Inner Circle.
+                    </div>
+                </div>
+                
+                <div class="footer-col social-col">
+                    <h4>Social</h4>
+                    <div class="social-links">
+                        <a href="#" class="magnetic"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="magnetic"><i data-lucide="youtube"></i></a>
+                        <a href="#" class="magnetic"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA Fragrances. All rights reserved.</p>
+                <div class="payment-badges">
+                    <i data-lucide="credit-card"></i>
+                    <i data-lucide="smartphone"></i>
+                    <i data-lucide="shield-check"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button class="close-btn magnetic" id="close-cart"><i data-lucide="x"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-solid w-100 magnetic">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quick-view-modal">
+        <div class="modal-content glass-card">
+            <button class="close-modal"><i data-lucide="x"></i></button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
