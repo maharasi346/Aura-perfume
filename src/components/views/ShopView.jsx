@@ -108,7 +108,7 @@ const ShopView = () => {
           
           <div className="mb-8 border-b border-white/5 pb-8">
             <h3 className="text-xs font-semibold uppercase tracking-[3px] mb-6 text-white/80 flex justify-between">
-              Price Range <span className="text-gold">${priceMax}</span>
+              Price Range <span className="text-gold">₹{priceMax}</span>
             </h3>
             <input 
               type="range" 

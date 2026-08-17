@@ -43,7 +43,7 @@ const ProductCard = ({ product }) => {
         <span className="text-text-muted ml-1">{product.rating}</span>
       </div>
       
-      <p className="text-text-muted mb-6 text-[1.1rem]">${product.price.toFixed(2)}</p>
+      <p className="text-text-muted mb-6 text-[1.1rem]">₹{product.price.toFixed(2)}</p>
       
       <div className="flex gap-2">
         <button 

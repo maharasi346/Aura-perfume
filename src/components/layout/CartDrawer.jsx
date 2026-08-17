@@ -47,7 +47,7 @@ const CartDrawer = () => {
                         <span className="text-sm w-4 text-center">{item.quantity}</span>
                         <button onClick={() => updateCartQuantity(item.id, 1)} className="text-white/50 hover:text-white"><Plus className="w-3 h-3" /></button>
                       </div>
-                      <p className="font-semibold">${(product.price * item.quantity).toFixed(2)}</p>
+                      <p className="font-semibold">₹{(product.price * item.quantity).toFixed(2)}</p>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ const CartDrawer = () => {
           <div className="p-8 border-t border-white/5 bg-[#050505]">
             <div className="flex justify-between items-center mb-6">
               <span className="text-white/60 uppercase tracking-[2px] text-sm">Subtotal</span>
-              <span className="font-heading text-2xl">${cartTotal.toFixed(2)}</span>
+              <span className="font-heading text-2xl">₹{cartTotal.toFixed(2)}</span>
             </div>
             <button 
               className="w-full bg-gold text-[#050505] font-semibold py-4 uppercase tracking-[2px] transition-all hover:bg-gold-hover"

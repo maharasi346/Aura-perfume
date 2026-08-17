@@ -23,7 +23,7 @@ const CheckoutModal = () => {
           <X className="w-6 h-6" />
         </button>
         <h2 className="font-heading text-3xl mb-2">Secure Checkout</h2>
-        <p className="text-white/60 mb-8 pb-6 border-b border-white/5">Total to pay: <span className="text-gold text-xl ml-2">${cartTotal.toFixed(2)}</span></p>
+        <p className="text-white/60 mb-8 pb-6 border-b border-white/5">Total to pay: <span className="text-gold text-xl ml-2">₹{cartTotal.toFixed(2)}</span></p>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <input type="text" placeholder="Full Name" className="w-full bg-[#111] border border-white/10 p-4 rounded outline-none focus:border-gold transition-colors text-white" required />
@@ -33,7 +33,7 @@ const CheckoutModal = () => {
             <input type="text" placeholder="MM/YY" className="w-1/3 bg-[#111] border border-white/10 p-4 rounded outline-none focus:border-gold transition-colors text-white" required />
           </div>
           <button type="submit" className="w-full bg-gold text-[#050505] font-semibold py-4 mt-6 uppercase tracking-[2px] transition-all hover:bg-gold-hover">
-            Pay ${cartTotal.toFixed(2)}
+            Pay ₹{cartTotal.toFixed(2)}
           </button>
         </form>
       </div>

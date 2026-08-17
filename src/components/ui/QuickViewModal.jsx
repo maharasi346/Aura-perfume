@@ -34,7 +34,7 @@ const QuickViewModal = () => {
           </div>
           
           <h2 className="font-heading text-4xl lg:text-5xl mb-4">{product.name}</h2>
-          <p className="text-2xl text-white/80 mb-6">${product.price.toFixed(2)}</p>
+          <p className="text-2xl text-white/80 mb-6">₹{product.price.toFixed(2)}</p>
           
           <p className="text-text-muted leading-relaxed mb-8">{product.desc}</p>
           
