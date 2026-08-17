@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/Pefume-brand/',
+  base: '/Aura-perfume/',
   css: {
     postcss: {} // Disable automatic postcss resolution
   }
