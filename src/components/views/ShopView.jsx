@@ -10,7 +10,7 @@ const ShopView = () => {
   
   // Filter States
   const [searchTerm, setSearchTerm] = useState('');
-  const [priceMax, setPriceMax] = useState(400);
+  const [priceMax, setPriceMax] = useState(1000);
   const [sortOption, setSortOption] = useState('featured');
   const [selectedFamilies, setSelectedFamilies] = useState([]);
   
@@ -113,7 +113,7 @@ const ShopView = () => {
             <input 
               type="range" 
               min="100" 
-              max="400" 
+              max="1000" 
               value={priceMax} 
               onChange={(e) => setPriceMax(e.target.value)}
               className="w-full"

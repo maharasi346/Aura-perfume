@@ -1,18 +1,18 @@
 // AURA Fragrances - Tailwind SPA Logic
 
 const products = [
-    { id: 1, name: "Noir Absolu", family: "Woody", price: 245.00, volume: "100ml", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.9, notes: "Top: Black Pepper | Heart: Oud | Base: Dark Amber", desc: "A dangerously seductive blend of aged oud and deep amber.", isFeatured: true, date: "2026-08-01", gender: "Men", isBestSeller: true, isNew: false, popularity: 98 },
-    { id: 2, name: "Éclat d'Or", family: "Floral", price: 210.00, volume: "50ml", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Bergamot | Heart: Ylang-Ylang | Base: Vanilla", desc: "Liquid gold in a bottle. A luminous, sophisticated floral.", isFeatured: true, date: "2026-07-15", gender: "Women", isBestSeller: true, isNew: false, popularity: 95 },
-    { id: 3, name: "Velvet Santal", family: "Woody", price: 185.00, volume: "50ml", image: "https://images.unsplash.com/photo-1590736969955-71cc94801759?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.7, notes: "Top: Cardamom | Heart: Iris | Base: Sandalwood", desc: "Creamy, smooth, and intimate Australian sandalwood.", isFeatured: true, date: "2026-06-20", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 82 },
-    { id: 4, name: "Midnight Rose", family: "Floral", price: 195.00, volume: "100ml", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.6, notes: "Top: Plum | Heart: Damask Rose | Base: Patchouli", desc: "A nocturnal, thorny bloom surrounded by dark fruits.", isFeatured: true, date: "2026-05-10", gender: "Women", isBestSeller: false, isNew: false, popularity: 75 },
-    { id: 5, name: "Oceanic Amber", family: "Aquatic", price: 165.00, volume: "50ml", image: "https://images.unsplash.com/photo-1615486171448-4fc1ac839f99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.5, notes: "Top: Sea Salt | Heart: Neroli | Base: Ambergris", desc: "A fresh yet sensual aquatic scent.", date: "2026-04-05", gender: "Men", isBestSeller: false, isNew: false, popularity: 68 },
-    { id: 6, name: "Desert Mirage", family: "Oriental", price: 280.00, volume: "100ml", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 5.0, notes: "Top: Saffron | Heart: Frankincense | Base: Myrrh", desc: "Rich, smoky, and intensely warm.", date: "2026-08-10", gender: "Unisex", isBestSeller: false, isNew: true, popularity: 88 },
-    { id: 7, name: "Citrus Riviera", family: "Fresh", price: 140.00, volume: "50ml", image: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.4, notes: "Top: Lemon Zest | Heart: Basil | Base: Vetiver", desc: "Sparkling and vibrant Mediterranean sunshine.", date: "2026-03-12", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 65 },
-    { id: 8, name: "Crimson Silk", family: "Oriental", price: 230.00, volume: "100ml", image: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Cherry | Heart: Almond | Base: Tonka Bean", desc: "A luxurious gourmand. Sweet and deeply enveloping.", date: "2026-02-28", gender: "Women", isBestSeller: true, isNew: false, popularity: 92 },
-    { id: 9, name: "Oud Royale", family: "Woody", price: 350.00, volume: "100ml", image: "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.9, notes: "Top: Rosewood | Heart: Cambodian Oud | Base: Musk", desc: "The pinnacle of luxury. Pure, unadulterated oud for the true connoisseur.", date: "2026-01-15", gender: "Men", isBestSeller: true, isNew: false, popularity: 89 },
-    { id: 10, name: "Jasmine Noir", family: "Floral", price: 175.00, volume: "50ml", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.7, notes: "Top: Green Leaves | Heart: Jasmine Sambac | Base: Cashmere Wood", desc: "An indolic, hypnotic white floral that blooms best at midnight.", date: "2026-07-01", gender: "Women", isBestSeller: false, isNew: true, popularity: 84 },
-    { id: 11, name: "Bergamot Blanc", family: "Fresh", price: 155.00, volume: "100ml", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.6, notes: "Top: White Tea | Heart: Bergamot | Base: White Musk", desc: "Clean, pure, and uplifting. Like crisp white linens on a Sunday morning.", date: "2026-05-25", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 72 },
-    { id: 12, name: "Spiced Leather", family: "Oriental", price: 220.00, volume: "50ml", image: "https://images.unsplash.com/photo-1590736969955-71cc94801759?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Nutmeg | Heart: Leather | Base: Cedarwood", desc: "A study in contrast. Sharp spices meld seamlessly into supple, warm leather.", date: "2026-08-05", gender: "Men", isBestSeller: false, isNew: true, popularity: 90 }
+    { id: 1, name: "Noir Absolu", family: "Woody", price: 850.00, volume: "100ml", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.9, notes: "Top: Black Pepper | Heart: Oud | Base: Dark Amber", desc: "A dangerously seductive blend of aged oud and deep amber.", isFeatured: true, date: "2026-08-01", gender: "Men", isBestSeller: true, isNew: false, popularity: 98 },
+    { id: 2, name: "Éclat d'Or", family: "Floral", price: 920.00, volume: "50ml", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Bergamot | Heart: Ylang-Ylang | Base: Vanilla", desc: "Liquid gold in a bottle. A luminous, sophisticated floral.", isFeatured: true, date: "2026-07-15", gender: "Women", isBestSeller: true, isNew: false, popularity: 95 },
+    { id: 3, name: "Velvet Santal", family: "Woody", price: 780.00, volume: "50ml", image: "https://images.unsplash.com/photo-1590736969955-71cc94801759?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.7, notes: "Top: Cardamom | Heart: Iris | Base: Sandalwood", desc: "Creamy, smooth, and intimate Australian sandalwood.", isFeatured: true, date: "2026-06-20", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 82 },
+    { id: 4, name: "Midnight Rose", family: "Floral", price: 890.00, volume: "100ml", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.6, notes: "Top: Plum | Heart: Damask Rose | Base: Patchouli", desc: "A nocturnal, thorny bloom surrounded by dark fruits.", isFeatured: true, date: "2026-05-10", gender: "Women", isBestSeller: false, isNew: false, popularity: 75 },
+    { id: 5, name: "Oceanic Amber", family: "Aquatic", price: 650.00, volume: "50ml", image: "./oceanic-amber.jpg", rating: 4.5, notes: "Top: Sea Salt | Heart: Neroli | Base: Ambergris", desc: "A fresh yet sensual aquatic scent.", date: "2026-04-05", gender: "Men", isBestSeller: false, isNew: false, popularity: 68 },
+    { id: 6, name: "Desert Mirage", family: "Oriental", price: 990.00, volume: "100ml", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 5.0, notes: "Top: Saffron | Heart: Frankincense | Base: Myrrh", desc: "Rich, smoky, and intensely warm.", date: "2026-08-10", gender: "Unisex", isBestSeller: false, isNew: true, popularity: 88 },
+    { id: 7, name: "Citrus Riviera", family: "Fresh", price: 450.00, volume: "50ml", image: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.4, notes: "Top: Lemon Zest | Heart: Basil | Base: Vetiver", desc: "Sparkling and vibrant Mediterranean sunshine.", date: "2026-03-12", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 65 },
+    { id: 8, name: "Crimson Silk", family: "Oriental", price: 820.00, volume: "100ml", image: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Cherry | Heart: Almond | Base: Tonka Bean", desc: "A luxurious gourmand. Sweet and deeply enveloping.", date: "2026-02-28", gender: "Women", isBestSeller: true, isNew: false, popularity: 92 },
+    { id: 9, name: "Oud Royale", family: "Woody", price: 950.00, volume: "100ml", image: "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.9, notes: "Top: Rosewood | Heart: Cambodian Oud | Base: Musk", desc: "The pinnacle of luxury. Pure, unadulterated oud for the true connoisseur.", date: "2026-01-15", gender: "Men", isBestSeller: true, isNew: false, popularity: 89 },
+    { id: 10, name: "Jasmine Noir", family: "Floral", price: 740.00, volume: "50ml", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.7, notes: "Top: Green Leaves | Heart: Jasmine Sambac | Base: Cashmere Wood", desc: "An indolic, hypnotic white floral that blooms best at midnight.", date: "2026-07-01", gender: "Women", isBestSeller: false, isNew: true, popularity: 84 },
+    { id: 11, name: "Bergamot Blanc", family: "Fresh", price: 550.00, volume: "100ml", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.6, notes: "Top: White Tea | Heart: Bergamot | Base: White Musk", desc: "Clean, pure, and uplifting. Like crisp white linens on a Sunday morning.", date: "2026-05-25", gender: "Unisex", isBestSeller: false, isNew: false, popularity: 72 },
+    { id: 12, name: "Spiced Leather", family: "Oriental", price: 880.00, volume: "50ml", image: "https://images.unsplash.com/photo-1590736969955-71cc94801759?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", rating: 4.8, notes: "Top: Nutmeg | Heart: Leather | Base: Cedarwood", desc: "A study in contrast. Sharp spices meld seamlessly into supple, warm leather.", date: "2026-08-05", gender: "Men", isBestSeller: false, isNew: true, popularity: 90 }
 ];
 
 let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
@@ -201,7 +201,7 @@ function generateCardHTML(p) {
             <p class="text-[0.75rem] text-[var(--gold)] uppercase mb-2 tracking-[2px]">${p.family} • ${p.volume}</p>
             <h3 class="font-heading text-2xl mb-2.5">${p.name}</h3>
             <div class="flex justify-center items-center gap-1 mb-4 text-[0.8rem]">${stars} <span class="text-[var(--text-muted)] ml-1">${p.rating}</span></div>
-            <p class="text-[var(--text-muted)] mb-6 text-[1.1rem]">$${p.price.toFixed(2)}</p>
+            <p class="text-[var(--text-muted)] mb-6 text-[1.1rem]">₹${p.price.toFixed(2)}</p>
             <div class="flex gap-2">
                 <button class="w-1/2 border border-white/5 py-3.5 text-[0.7rem] sm:text-[0.85rem] uppercase tracking-[2px] transition-all hover:border-[var(--gold)] hover:text-[var(--gold)] hover:bg-[rgba(212,175,55,0.05)] magnetic" onclick="addToCart(${p.id})">Add to Bag</button>
                 <button class="w-1/2 bg-[var(--gold)] text-[#050505] font-semibold py-3.5 text-[0.7rem] sm:text-[0.85rem] uppercase tracking-[2px] transition-all hover:bg-[#F3E5AB] magnetic" onclick="buyNow(${p.id})">Buy Now</button>
@@ -400,7 +400,7 @@ function updateCartUI() {
     const totalAmt = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
     
     document.getElementById('cart-badge').textContent = totalQty;
-    document.getElementById('cart-total').textContent = `$${totalAmt.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `₹${totalAmt.toFixed(2)}`;
     
     const container = document.getElementById('cart-items');
     if (cart.length === 0) {
@@ -421,7 +421,7 @@ function updateCartUI() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         </button>
                     </div>
-                    <p class="text-gold text-sm tracking-[1px] mt-1">$${i.price.toFixed(2)}</p>
+                    <p class="text-gold text-sm tracking-[1px] mt-1">₹${i.price.toFixed(2)}</p>
                 </div>
                 
                 <div class="flex justify-between items-end mt-4">
@@ -463,7 +463,7 @@ window.openQuickView = function(id) {
             <div class="text-[var(--gold)] mb-4 flex items-center gap-1.5 text-[0.9rem]">
                 ${stars} <span class="text-[var(--text-muted)] text-[0.8rem] ml-2.5">(${p.rating})</span>
             </div>
-            <p class="text-[1.3rem] mb-5">$${p.price.toFixed(2)}</p>
+            <p class="text-[1.3rem] mb-5">₹${p.price.toFixed(2)}</p>
             <p class="text-[var(--text-muted)] text-[0.95rem] mb-5 leading-[1.6]">${p.desc}</p>
             
             <div class="mb-5">
@@ -718,7 +718,7 @@ window.renderWishlist = function() {
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </button>
                     </div>
-                    <p class="text-gold text-sm tracking-[1px] mt-1">$${i.price.toFixed(2)}</p>
+                    <p class="text-gold text-sm tracking-[1px] mt-1">₹${i.price.toFixed(2)}</p>
                 </div>
                 <button class="text-xs uppercase tracking-[2px] text-white/60 hover:text-gold text-left mt-4 transition-colors flex items-center gap-2" onclick="addToCart(${i.id}); toggleWishlist(${i.id}, event);">
                     <i data-lucide="shopping-bag" class="w-3 h-3"></i> Move to Bag
@@ -804,7 +804,7 @@ window.renderSearchResults = function(query) {
             <img src="${p.image}" class="w-12 h-12 object-cover rounded-sm border border-white/10">
             <div class="flex-1 text-left">
                 <h3 class="font-heading text-sm text-white/90 group-hover:text-gold transition-colors">${p.name}</h3>
-                <p class="text-gold text-[0.65rem] tracking-[1px] mt-0.5">$${p.price.toFixed(2)}</p>
+                <p class="text-gold text-[0.65rem] tracking-[1px] mt-0.5">₹${p.price.toFixed(2)}</p>
             </div>
             <button data-wishlist-btn="${p.id}" class="w-8 h-8 flex items-center justify-center rounded-full bg-black/40 border border-white/5 opacity-0 group-hover:opacity-100 transition-all hover:bg-black/80 hover:border-gold group/btn z-10" onclick="toggleWishlist(${p.id}, event)">
                 ${heartIcon}
